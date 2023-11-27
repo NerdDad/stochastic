@@ -25,9 +25,9 @@ export default function Account() {
         if (error) {
           console.warn(error);
         } else if (data) {
-          setUsername(data.username);
-          setWebsite(data.website);
-          setAvatarUrl(data.avatar_url);
+          setUsername(data.username!);
+          setWebsite(data.website!);
+          setAvatarUrl(data.avatar_url!);
         }
       }
 
@@ -55,7 +55,7 @@ export default function Account() {
       updated_at: new Date(),
     };
 
-    const { error } = await supabase.from("profiles").upsert(updates);
+    const { error } = await supabase.from("profiles").upsert(updates as any);
 
     if (error) {
       alert(error.message);
